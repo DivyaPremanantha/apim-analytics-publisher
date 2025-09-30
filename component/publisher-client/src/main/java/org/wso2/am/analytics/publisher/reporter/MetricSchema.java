@@ -32,4 +32,6 @@ public enum MetricSchema {
     PAYLOAD,
     MOESIF_RESPONSE,
     MOESIF_ERROR,
+    NEW_RELIC_RESPONSE,
+    NEW_RELIC_ERROR,
 }

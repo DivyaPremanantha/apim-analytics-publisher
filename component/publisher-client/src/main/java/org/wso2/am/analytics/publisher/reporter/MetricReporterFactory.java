@@ -23,6 +23,7 @@ import org.apache.logging.log4j.Logger;
 import org.wso2.am.analytics.publisher.exception.MetricCreationException;
 import org.wso2.am.analytics.publisher.reporter.cloud.DefaultAnalyticsMetricReporter;
 import org.wso2.am.analytics.publisher.reporter.elk.ELKMetricReporter;
+import org.wso2.am.analytics.publisher.reporter.newrelic.NewRelicReporter;
 import org.wso2.am.analytics.publisher.util.Constants;
 
 import java.lang.reflect.Constructor;
@@ -75,6 +76,41 @@ public class MetricReporterFactory {
         MetricReporter reporterInstance = reporterRegistry.get(Constants.ELK_REPORTER);
         log.info("Metric Reporter of type " + reporterInstance.getClass().toString().replaceAll("[\r\n]", "") +
                 " is already created. Hence returning same instance");
+        return reporterInstance;
+    }
+
+    /**
+     * Creates and returns a New Relic metric reporter instance.
+     * 
+     * <p>This method implements the singleton pattern to ensure only one New Relic
+     * reporter instance exists per factory. If an instance already exists, it returns
+     * the cached instance instead of creating a new one.</p>
+     * 
+     * <p>Required configuration properties:</p>
+     * <ul>
+     *   <li>{@code newrelic.key} - New Relic License Key for API authentication</li>
+     * </ul>
+     * 
+     * @param properties Configuration properties map containing New Relic settings
+     * @return A {@link NewRelicReporter} instance, either newly created or cached
+     * @throws MetricCreationException if reporter creation fails due to invalid configuration
+     *                                 or initialization errors
+     */
+    public MetricReporter createNewRelicMetricReporter(Map<String, String> properties) throws MetricCreationException {
+        if (reporterRegistry.get(Constants.NEW_RELIC_REPORTER) == null) {
+            synchronized (this) {
+                if (reporterRegistry.get(Constants.NEW_RELIC_REPORTER) == null) {
+                    log.info("Creating New Relic metric reporter instance");
+                    MetricReporter reporterInstance = new NewRelicReporter(properties);
+                    reporterRegistry.put(Constants.NEW_RELIC_REPORTER, reporterInstance);
+                    log.info("New Relic metric reporter successfully created and registered");
+                    return reporterInstance;
+                }
+            }
+        }
+
+        MetricReporter reporterInstance = reporterRegistry.get(Constants.NEW_RELIC_REPORTER);
+        log.info("New Relic metric reporter already exists, returning existing instance");
         return reporterInstance;
     }
 

@@ -141,8 +141,11 @@
                             org.wso2.am.analytics.publisher.reporter.cloud.*;version="${project.version}",
                             org.wso2.am.analytics.publisher.reporter.moesif.*;version="${project.version}",
                             org.wso2.am.analytics.publisher.reporter.moesif.util*;version="${project.version}",
+                            org.wso2.am.analytics.publisher.reporter.newrelic.*;version="${project.version}",
+                            org.wso2.am.analytics.publisher.reporter.newrelic.util.*;version="${project.version}",
                             !org.wso2.am.analytics.publisher.reporter.choreo;version="${project.version}",
                             org.wso2.am.analytics.publisher.client.*;version="${project.version}",
+                            org.wso2.am.analytics.publisher.client.newrelic.*;version="${project.version}",
                             org.wso2.am.analytics.publisher.reporter.*;version="${project.version}",
                             org.wso2.am.analytics.publisher.retriever.*;version="${project.version}",
                             org.wso2.am.analytics.publisher.exception.*;version="${project.version}",
@@ -194,6 +197,7 @@
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
                         <manifest>
                             <mainClass>org.wso2.am.analytics.publisher.client.EventHubPublisherRunner</mainClass>
                         </manifest>

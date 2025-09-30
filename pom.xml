@@ -60,6 +60,16 @@
                 <version>${gson.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
@@ -319,6 +329,8 @@
         <gson.import.version.range>[2.0.0, 3.0.0)</gson.import.version.range>
         <moesif.api.version>1.7.4</moesif.api.version>
         <moesif.unirest.version>1.0.8</moesif.unirest.version>
+        <jackson.version>2.15.2</jackson.version>
+        <httpclient.version>4.5.14</httpclient.version>
         <apache.httpcomponents.version>4.0.2</apache.httpcomponents.version>
         <azure.messaging.evenhub.version>5.3.1</azure.messaging.evenhub.version>
         <gson.version>2.11.0</gson.version>

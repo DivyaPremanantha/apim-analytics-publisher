@@ -96,6 +96,7 @@ public class Constants {
     //Reporter constants
     public static final String DEFAULT_REPORTER = "default";
     public static final String ELK_REPORTER = "elk";
+    public static final String NEW_RELIC_REPORTER = "newrelic";
 
     //EventHub Client retry options constants
     public static final int DEFAULT_MAX_RETRIES = 2;
@@ -137,5 +138,7 @@ public class Constants {
     public static final String TYPE = "type";
     public static final String MOESIF = "moesif";
     public static final String MOESIF_KEY = "moesifKey";
+    public static final String NEW_RELIC = "newrelic";
+    public static final String NEW_RELIC_KEY = "newrelicKey";
 
 }
